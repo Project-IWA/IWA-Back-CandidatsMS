@@ -15,6 +15,11 @@ import java.util.List;
 @Table(name = "candidat")
 public class Candidat {
 
+    public enum Etat {
+        DISPONIBLE,
+        INDISPONIBLE
+    }
+
     @Id
     private String email;
 
@@ -26,11 +31,13 @@ public class Candidat {
 
     @Embedded
     private Adresse address;
-
     private String phone;
     private String photo; // URL de la photo
     private String cv; // URL du CV
     private String shortBio;
+
+    @Enumerated(EnumType.STRING)
+    private Etat etat = Etat.DISPONIBLE; // Initialisation de l'état par défaut à "Disponible"
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "candidat_email")

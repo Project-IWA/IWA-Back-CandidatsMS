@@ -52,6 +52,12 @@ public class CandidatController {
         }
     }
 
+    @PutMapping("/update-state")
+    public ResponseEntity<Candidat> updateCandidatState(@RequestBody Candidat candidat) {
+        Candidat updatedCandidat = candidatService.createOrUpdateCandidat(candidat);
+        return ResponseEntity.ok(updatedCandidat);
+    }
+
     // Delete a candidat
     @DeleteMapping("/{email}")
     public ResponseEntity<?> deleteCandidat(@PathVariable String email) {
