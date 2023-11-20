@@ -1,0 +1,73 @@
+[
+      {
+        "email": "candidate@email.com",
+        "firstName": "John",
+        "lastName": "Doe",
+        "gender": 1,
+        "birthDate": "1990-01-01T00:00:00.000Z",
+        "citizenship": "French",
+        "address": {
+          "streetNum": "123",
+          "street": "Main Street",
+          "complement": "Apt 4",
+          "zipCode": "75000",
+          "city": "Paris",
+          "country": "France"
+        },
+        "phone": "0123456789",
+        "photo": "http://example.com/photo.jpg",
+        "cv": "http://example.com/cv.pdf",
+        "shortBio": "A brief bio about the candidate.",
+        "references": [
+          {
+            "refName": "John Doe",
+            "refEstablishment": "Acme Corp",
+            "refAddress": {
+              "streetNum": "123",
+              "street": "Main Street",
+              "complement": "Apt 4",
+              "zipCode": "75000",
+              "city": "Paris",
+              "country": "France"
+            },
+            "refPhone": "0123456789",
+            "refEmail": "ref@example.com"
+          }
+        ],
+        "experiences": [
+          {
+            "job": "Developer",
+            "jobCategory": "Software",
+            "startedAt": "2023-01-01T00:00:00.000Z",
+            "endedAt": "2023-12-31T00:00:00.000Z",
+            "establishment": {
+              "establishmentName": "Software Solutions",
+              "establishmentAddress": {
+                "streetNum": "123",
+                "street": "Main Street",
+                "complement": "Apt 4",
+                "zipCode": "75000",
+                "city": "Paris",
+                "country": "France"
+              }
+            }
+          }
+        ],
+        "disponibilites": [
+          {
+            "jobCategory": "Software",
+            "startsAt": "2023-01-01T00:00:00.000Z",
+            "endsAt": "2023-12-31T00:00:00.000Z",
+            "places": ["Paris", "Lyon"]
+          }
+        ],
+        "opinions": [
+          {
+            "score": 4.5,
+            "message": "Excellent work ethic",
+            "employerId": 100,
+            "providedAt": "2023-01-01T00:00:00.000Z"
+          }
+        ]
+      }
+]

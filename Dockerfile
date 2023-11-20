@@ -5,7 +5,7 @@ FROM openjdk:17
 WORKDIR /usr/src/app
 
 # Copiez le fichier JAR de votre application dans l'image Docker
-COPY target/matching-0.0.1-SNAPSHOT.jar /usr/src/app
+COPY target/candidats-0.0.1-SNAPSHOT.jar /usr/src/app
 
 # Commande pour exécuter votre application
-CMD ["java", "-jar", "matching-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "candidats-0.0.1-SNAPSHOT.jar"]
