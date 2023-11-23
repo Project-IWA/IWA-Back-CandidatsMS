@@ -3,6 +3,7 @@ package com.iwa.candidats.controller;
 import com.iwa.candidats.model.Candidat;
 import com.iwa.candidats.service.CandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,11 +53,16 @@ public class CandidatController {
         }
     }
 
-    @PutMapping("/update-state")
-    public ResponseEntity<Candidat> updateCandidatState(@RequestBody Candidat candidat) {
-        Candidat updatedCandidat = candidatService.createOrUpdateCandidat(candidat);
-        return ResponseEntity.ok(updatedCandidat);
+    @PutMapping("/update-state/{email}")
+    public ResponseEntity<?> updateCandidatState(@PathVariable String email, @RequestParam String etat) {
+        try {
+            Candidat candidat = candidatService.updateCandidatState(email, etat);
+            return ResponseEntity.ok(candidat);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
+
 
     // Delete a candidat
     @DeleteMapping("/{email}")

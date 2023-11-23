@@ -22,7 +22,7 @@ public class Experience {
     private Date startedAt;
     private Date endedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "etablissement_id")
     private Etablissement establishment;
 
