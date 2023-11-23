@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -35,23 +37,25 @@ public class CandidatController {
 
     // Create a new candidat
     @PostMapping
-    public Candidat createCandidat(@RequestBody Candidat candidat) {
-        return candidatService.createOrUpdateCandidat(candidat);
+    public ResponseEntity<Candidat> createCandidat(@RequestBody Candidat candidat) {
+        Candidat createdCandidat = candidatService.createOrUpdateCandidat(candidat);
+        // La réponse URI devrait idéalement indiquer l'emplacement du nouveau candidat créé
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{email}")
+                .buildAndExpand(createdCandidat.getEmail())
+                .toUri();
+        return ResponseEntity.created(location).body(createdCandidat);
     }
+
 
     // Update a candidat
     @PutMapping("/{email}")
-    public ResponseEntity<?> updateCandidat(@PathVariable String email, @RequestBody Candidat candidatDetails) {
-        Candidat existingCandidat = candidatService.getCandidatByEmail(email);
-        if (existingCandidat != null) {
-            // Update and save candidat details
-            candidatDetails.setEmail(email); // Ensure the email is set correctly
-            Candidat updatedCandidat = candidatService.createOrUpdateCandidat(candidatDetails);
-            return ResponseEntity.ok(updatedCandidat);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Candidat> updateCandidat(@PathVariable String email, @RequestBody Candidat candidatDetails) {
+        candidatDetails.setEmail(email); // Ensure the email is set correctly
+        Candidat updatedCandidat = candidatService.createOrUpdateCandidat(candidatDetails);
+        return ResponseEntity.ok(updatedCandidat);
     }
+
 
     @PutMapping("/update-state/{email}")
     public ResponseEntity<?> updateCandidatState(@PathVariable String email, @RequestParam String etat) {
@@ -67,10 +71,8 @@ public class CandidatController {
     // Delete a candidat
     @DeleteMapping("/{email}")
     public ResponseEntity<?> deleteCandidat(@PathVariable String email) {
-        if (candidatService.deleteCandidatByEmail(email)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        candidatService.deleteCandidatByEmail(email);
+        return ResponseEntity.ok().build();
     }
+
 }
