@@ -1,17 +1,17 @@
 version: '3'
 
 services:
-  recrutements-app:
+  candidats-app:
     build: .
     ports:
       - "8085:8080"
     depends_on:
-      - postgres
+      - candidats-postgres
 
-  postgres:
+  candidats-postgres:
     image: postgres
     ports:
-      - "5432:5432"
+      - "5437:5432"
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
