@@ -8,7 +8,7 @@ VALUES
 INSERT INTO disponibilite (ends_at, job_category, starts_at, candidat_email)
 VALUES
 ('2023-12-31', 'Commerce, Achats, Vente', '2023-01-01', 'jean.dupont@example.com'),
-('2023-12-31', 'Recherche, Sciences', '2023-01-01', 'marie.curie@example.com');
+('2023-12-31', 'Autres', '2023-01-01', 'marie.curie@example.com');
 
 -- Insérer des données dans la table `disponibilite_places`
 INSERT INTO disponibilite_places (disponibilite_id, place)
